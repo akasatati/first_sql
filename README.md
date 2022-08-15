@@ -3,7 +3,7 @@
 
 # 起動まで
 ```shell
-cp .env .env.example
+cp .env.example .env
 docker-compose build
 docker-comnpose up -d
 ```
