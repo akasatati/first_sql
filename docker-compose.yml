@@ -1,0 +1,25 @@
+version: '3.9'
+volumes:
+  db-store:
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    ports:
+      - target: 3306
+        published: ${DB_PORT:-3306}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: db-store
+        target: /var/lib/mysql
+      - type: bind
+        source: ./docker/mysql/
+        target: /docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-first_sql}
+      - MYSQL_USER=${DB_USER:-first_sql}
+      - MYSQL_PASSWORD=${DB_PASS:-first_sql}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-first_sql}
