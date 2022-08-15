@@ -5,5 +5,5 @@
 ```shell
 cp .env.example .env
 docker-compose build
-docker-comnpose up -d
+docker-compose up -d
 ```
